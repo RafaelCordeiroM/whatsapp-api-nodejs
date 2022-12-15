@@ -18,6 +18,7 @@ module.exports = function processButton(buttons) {
                 },
             })
         }
+        
         if (button.type == 'urlButton') {
             preparedButtons.push({
                 urlButton: {

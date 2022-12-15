@@ -1,6 +1,7 @@
 const dotenv = require('dotenv')
 const mongoose = require('mongoose')
 const logger = require('pino')()
+const provider = require('./provider')
 dotenv.config()
 
 const app = require('./config/express')
@@ -19,6 +20,7 @@ if (config.mongoose.enabled) {
 
 server = app.listen(config.port, async () => {
     logger.info(`Listening on port ${config.port}`)
+    // provider()
     global.mongoClient = await connectToCluster(config.mongoose.url)
     if (config.restoreSessionsOnStartup) {
         logger.info(`Restoring Sessions`)
@@ -27,6 +29,9 @@ server = app.listen(config.port, async () => {
         logger.info(`${restoreSessions.length} Session(s) Restored`)
     }
 })
+
+
+
 
 const exitHandler = () => {
     if (server) {
