@@ -97,7 +97,7 @@ class WhatsAppInstance {
             }
           });
           
-          httpServer.listen(3009);
+        //   httpServer.listen(3009);
           io.on("connection", (socket) => {
             console.log('testhg 2', socket)
           
@@ -145,6 +145,7 @@ class WhatsAppInstance {
                     }
 
                     if (qr) {
+                        console.log('testhg qr', qr)
                         QRCode.toDataURL(qr).then((url) => {
                             this.instance.qr = url
                             this.instance.qrRetry++
